@@ -1,0 +1,31 @@
+{
+    "apps": [{
+        "name": "trip",
+        "script": "./app.js",
+        "watch": true,
+        "max_memory_restart": "1024M",
+        "instances": "1",
+        "exec_mode": "cluster",
+        "log_date_format": "YYYY-MM-DD HH:mm Z",
+        "error_file": "/data/logs/node/trip_err.log",
+        "out_file": "/data/logs/node/trip_out.log",
+        "combine_logs": true,
+        "merge_logs": true,
+        "env": {
+            "NODE_ENV": "development"
+        },
+        "env_production": {
+            "NODE_ENV": "production"
+        }
+    }],
+    "deploy": {
+        "production": {
+            "user": "root",
+            "host": "",
+            "ref": "origin/master",
+            "repo": "",
+            "path": "",
+            "post-deploy": "npm install --production; pm2 startOrRestart ecosystem.json  --env production"
+        }
+    }
+}

@@ -1,0 +1,12 @@
+//-----------------------------------
+//px转rem
+//demo: px2rem(12px)
+//-----------------------------------
+@function px2rem($px, $base-font-size: 20px) {
+  @if (unitless($px)) {
+    @return px2rem($px + 0px); // That may fail.
+  } @else if (unit($px) == rem) {
+    @return $px;
+  }
+  @return ($px / $base-font-size) * 1rem;
+}

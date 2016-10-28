@@ -1,0 +1,66 @@
+//-----------------------------------
+//适配retina屏文字大小
+//demo: @include font-dpr(12px)
+//-----------------------------------
+@mixin font-dpr($font-size){
+  font-size: ($font-size / 20px) * 1rem;
+}
+//-----------------------------------
+//清除浮动
+//demo: @include clearfix()
+//-----------------------------------
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+//retina 1px border
+@mixin border-dpr($style, $color, $direction: all) {
+  & {
+    position: relative;
+    @if $direction == all {
+      &:after {
+        content: " ";
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px $style $color;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        box-sizing: border-box;
+        pointer-events: none;    // 解决内部元素无法点击问题
+      }
+    } @else {
+      &:after {
+        content: " ";
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-#{$direction}: 1px $style $color;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        box-sizing: border-box;
+        pointer-events: none;    // 解决内部元素无法点击问题
+      }
+    }
+  }
+}
+@mixin border-radius-dpr($px) {
+  &:after {
+    border-radius: $px;
+  }
+}

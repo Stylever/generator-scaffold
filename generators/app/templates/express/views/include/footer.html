@@ -1,0 +1,21 @@
+{% if env == 'development' %}
+<script type="text/javascript" src="/js/require.js"></script>
+<script type="text/javascript">
+	require.config({
+		baseUrl: _global.staticBaseUrl + 'js',
+		paths: {
+			zepto: 'libs/zepto',
+			moment: 'libs/moment'
+		},
+		shim: {
+
+		}
+	});
+</script>
+{% else %}
+<script type="text/javascript" src="{{= staticBaseUrl }}js/project/common.5adb760d21c381de0522.js"></script>
+{% endif %}
+
+{% for item in distJs %}
+<script type="text/javascript" src="{{= staticBaseUrl }}js/{{= item | versionFilter }}.js"></script> 
+{% endfor %}
