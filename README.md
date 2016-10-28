@@ -25,7 +25,7 @@ yo scaffold
 
 ## License
 
-Apache-2.0 © [lidongyang]()
+Apache-2.0 ©
 
 
 [npm-image]: https://badge.fury.io/js/generator-scaffold.svg
