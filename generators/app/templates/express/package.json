@@ -2,11 +2,15 @@
   "name": "express",
   "version": "1.0.0",
   "description": "express",
-  "main": "gulpfile.js",
+  "main": "app.js",
+  "config": {
+    "staticPath": "./public"
+  },
   "scripts": {
-    "debug": "supervisor --debug app.js",
     "start": "supervisor app.js",
-    "zip": ""
+    "debug": "supervisor --debug app.js",
+    "build": "cd ./$npm_package_config_staticPath && gulp build_dist",
+    "publish": "pm2 deploy ecosystem.json testing"
   },
   "author": "Style",
   "license": "ISC",
